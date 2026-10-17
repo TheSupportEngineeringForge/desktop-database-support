@@ -174,3 +174,47 @@ This case is designed as a reproducible technical demonstration rather than a pr
 The HR business context and employee records are simulated. The SQL objects, queries, procedural logic, triggers, and validation steps are implemented as executable T-SQL.
 
 **The business scenario is simulated where necessary. The technical implementation is real.**
+
+---
+
+## Execution Evidence
+
+The following screenshots document selected results from the completed SQL Server integration test performed in dbForge Studio for SQL Server.
+
+They provide visual evidence of the HR dataset, recursive hierarchy processing, audit trigger execution, and final database-state validation.
+
+### 1. HR Dataset & LEFT JOIN
+
+![HR dataset with department names retrieved through LEFT JOIN](./evidence/hr-dataset-join.png)
+
+The query returns all 10 employees with their corresponding department names, salary information, reporting relationships, and employment status.
+
+### 2. Recursive CTE — Employee Hierarchy
+
+![Recursive CTE employee hierarchy results](./evidence/recursive-cte.png)
+
+The recursive query returns all 10 employees, including the root employee and reporting relationships across hierarchy levels 0–3.
+
+### 3. INSERT & DELETE Trigger Audit
+
+![INSERT and DELETE trigger audit records](./evidence/audit-triggers.png)
+
+Both audit triggers recorded the corresponding operations for test employee `999`. The audit entries include salary information, execution timestamps, and application metadata.
+
+Local operating-system identifiers have been redacted from the screenshot.
+
+### 4. Final Database-State Validation
+
+![Final SQL Server database validation results](./evidence/final-validation.png)
+
+The final validation confirms the expected database state:
+
+- 4 departments.
+- 10 employees.
+- 1 INSERT audit record.
+- 1 DELETE audit record.
+- 2 employee audit triggers.
+
+All five metrics matched the expected results during the integration test.
+
+The screenshots represent selected execution results. The complete executable demonstration and its validation queries are available in [`Syntax_Demo_Polished.sql`](./Syntax_Demo_Polished.sql).
